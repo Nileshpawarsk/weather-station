@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weather Station</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌤️</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-sky="clear-day">
+<header class="sky">
+  <div class="sky-inner">
+    <p class="brand">Weather Station</p>
+    <form id="searchForm" class="search" autocomplete="off">
+      <input id="cityInput" type="text" placeholder="Search a city, e.g. Pune" aria-label="City name" required>
+      <button type="submit">Check weather</button>
+    </form>
+
+    <div id="current" class="current" aria-live="polite">
+      <p class="empty">Search for a city to see its live weather. Each check is saved to your report history.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="ledger" aria-labelledby="hist">
+    <div class="section-head">
+      <h2 id="hist">Report history</h2>
+      <form id="filterForm" class="filters">
+        <input id="filterCity" type="text" placeholder="Filter by city" aria-label="Filter by city">
+        <select id="limit" aria-label="Number of reports">
+          <option value="10">Last 10</option>
+          <option value="50" selected>Last 50</option>
+          <option value="100">Last 100</option>
+        </select>
+        <button type="submit" class="ghost">Apply</button>
+        <button type="button" id="clearBtn" class="ghost danger">Clear all</button>
+      </form>
+    </div>
+    <p id="count" class="muted"></p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>City</th><th>Temp</th><th>Humidity</th><th>Wind</th><th>Conditions</th><th>Saved</th></tr></thead>
+        <tbody id="reports"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="knowledge" aria-labelledby="kb">
+    <div class="section-head">
+      <h2 id="kb">Weather knowledge</h2>
+      <form id="kbForm" class="filters">
+        <input id="kbSearch" type="text" placeholder="Search articles" aria-label="Search articles">
+        <button type="submit" class="ghost">Search</button>
+        <button type="button" id="kbAll" class="ghost">Show all</button>
+      </form>
+    </div>
+    <div id="articles" class="articles"></div>
+  </section>
+</main>
+
+<footer>
+  <span>Weather data by Open-Meteo</span>
+  <a href="/health" target="_blank" rel="noopener">Server health</a>
+</footer>
+<script src="app.js"></script>
+</body>
+</html>
